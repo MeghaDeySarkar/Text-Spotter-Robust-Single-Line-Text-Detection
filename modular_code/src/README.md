@@ -1,31 +1,37 @@
-# Text Detection based on Convolutional Recurrent Neural Network (CRNN)
 
-This repository contains the code for the CRNN implementation on the [TRSynth100K Dataset](https://www.kaggle.com/eabdul/textimageocr) from [Kaggle](https://www.kaggle.com/).
+Text Spotter: Robust Single-Line Text Detection 
 
-### Installation
+Welcome to the CRNN implementation for text detection on the TRSynth100K dataset, sourced from Kaggle. This repository provides  tools to train a Convolutional Recurrent Neural Network (CRNN) to identify text within images.
 
-To install the dependencies run:
-```
+Installation
+Get started by installing the necessary dependencies. Simply execute the following command:
 pip install -r requirements.txt
-```
 
-### TRSynth100K Dataset
-The dataset contains 100k images containing texts in them. Each image is of size 40x160 pixels. The text in the images are given as labels. The goal is to identify the text in the image.
+TRSynth100K Dataset
 
-Download the data, unzip the file and place the folder ```TRSynth100K``` inside the ```data``` folder.
+The TRSynth100K dataset comprises 100,000 images containing various textual content. Each image is sized at 40x160 pixels. The text within these images serves as the ground truth labels. Your objective is to accurately detect and identify the text within these images.
 
-### Data processing
-To process the data, run:
-```
+Download the dataset from Kaggle, unzip the file, and place the resulting folder named TRSynth100K inside the data directory.
+
+Data Preprocessing
+
+Prepare the dataset for training by preprocessing the images. Execute the following command:
+
 python preprocessing.py
-```
 
-### Train the model
-To train the model, run:
-```
+Training the Model
+
+Train the CRNN model on the preprocessed dataset using the following command:
 python train.py
-```
 
-### Use the model to make predictions
-To make predictions on an image, run:
-```python predict.py ----test_img path_to_test_img```
+Making Predictions
+
+Once the model is trained, we can utilize it to make predictions on new images. Simply run:
+
+python predict.py --test_img path_to_test_img
+
+Replace path_to_test_img with the path to the image you want to analyze.
+
+Feel free to explore, experiment, and enhance the capabilities of your CRNN model for text detection using this repository. If you encounter any issues or have suggestions for improvement, please don't hesitate to reach out. 
+
+Happy coding!

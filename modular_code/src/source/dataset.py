@@ -26,28 +26,17 @@ class TRSynthDataset(torch.utils.data.Dataset):
         return len(self.image_ids)
 
     def __getitem__(self, idx):
-        # Get image id
         img_id = self.image_ids[idx]
-        # Load the image
         img = cv2.imread(img_id)
-        # Normalize the image
         augmented = self.aug(image=img)
         img = augmented['image']
-        # Bring channel first
         img = img.transpose(2, 0, 1)
-        # Convert to torch tensor
         img = torch.from_numpy(img)
 
-        # Get the labels
         target = self.labels[idx]
-        # Convert characters to integers
         target = [self.char2int[i] for i in target]
-        # Length of each target
         target_len = torch.LongTensor([len(target)])
-        # Pad target with zeros to make sure every
-        # target has equal length
         target += [0] * (self.max_len - len(target))
-        # Convert to torch tensor
         target = torch.LongTensor(target)
 
         return img, target, target_len
