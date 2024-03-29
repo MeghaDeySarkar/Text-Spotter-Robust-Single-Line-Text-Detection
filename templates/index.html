@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            margin-top: 15px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Detection</h1>
+        <form action="/detect_text" method="post" enctype="multipart/form-data" id="uploadForm">
+            <label for="fileInput" class="custom-file-upload">
+                Choose Image
+            </label>
+            <input type="file" name="image" id="fileInput" accept="image/*" required>
+            <button type="submit" id="detectButton">Detect Text</button>
+        </form>
+        <div id="result">
+            {% if prediction %}
+                <h2>Prediction: {{ prediction }}</h2>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function () {
+            var fileName = this.value.split('\\').pop();
+            document.querySelector('.custom-file-upload').innerHTML = fileName;
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function () {
+            document.getElementById('detectButton').innerHTML = 'Detecting...';
+        });
+    </script>
+</body>
+</html>
